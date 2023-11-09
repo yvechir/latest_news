@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Provides latest news functionality.
+ */
+
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ */
+function latest_news_block_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if ($variables['elements']['#id'] === 'latest_news_block') {
+    $suggestions[] = 'block__latest_news_block';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function latest_news_theme($existing, $type, $theme, $path) {
+    return [
+      'block__latest_news_block' => [
+        'render element' => 'elements',
+        'base hook' => 'node',
+        'template' => 'block--latest-news-block',
+      ],
+    ];
+  }

@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'Latest News' block.
+ *
+ * Available variables:
+ * - content: An array of items to display.
+ *
+ * Each item in the content array contains:
+ * - title: The title of the article.
+ * - teaser: A summary of the article.
+ * - url: The URL to the full article.
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_block()
+ */
+#}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="latest-news-block">
+        <h2 class="latest-news-block-title">{{ 'Latest News'|t }}</h2>
+        <div class="row">
+          {% for item in content['#items'] %}
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title">{{ item.title }}</h3>
+                  <p class="card-text">{{ item.teaser }}</p>
+                  <a href="{{ item.url }}" class="btn btn-primary">{{ 'Read more'|t }}</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ attach_library('latest_news/latest-news') }}
